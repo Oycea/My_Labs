@@ -1,22 +1,22 @@
-//Гущиной Маргариты ПМИ13-БО
-//ЛАБОРАТОРНАЯ РАБОТА №9. ДИНАМИЧЕСКОЕ ПРОГРАММИРОВАНИЕ.
+//Р“СѓС‰РёРЅРѕР№ РњР°СЂРіР°СЂРёС‚С‹ РџРњР13-Р‘Рћ
+//Р›РђР‘РћР РђРўРћР РќРђРЇ Р РђР‘РћРўРђ в„–9. Р”РРќРђРњРР§Р•РЎРљРћР• РџР РћР“Р РђРњРњРР РћР’РђРќРР•.
 //
-//Даны две последовательности.
-//Требуется найти и вывести их наибольшую общую подпоследовательность.
+//Р”Р°РЅС‹ РґРІРµ РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅРѕСЃС‚Рё.
+//РўСЂРµР±СѓРµС‚СЃСЏ РЅР°Р№С‚Рё Рё РІС‹РІРµСЃС‚Рё РёС… РЅР°РёР±РѕР»СЊС€СѓСЋ РѕР±С‰СѓСЋ РїРѕРґРїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅРѕСЃС‚СЊ.
 
 #include<iostream>
 #include<algorithm>
 #include<vector>
 using namespace std;
 
-//Запонение динамического массива
+//Р—Р°РїРѕРЅРµРЅРёРµ РґРёРЅР°РјРёС‡РµСЃРєРѕРіРѕ РјР°СЃСЃРёРІР°
 int* input_arr(int* arr, int size) {
 	for (int i = 1; i <= size; i++)
 		cin >> arr[i];
 	return arr;
 }
 
-//Выделение памяти для матрицы строк
+//Р’С‹РґРµР»РµРЅРёРµ РїР°РјСЏС‚Рё РґР»СЏ РјР°С‚СЂРёС†С‹ СЃС‚СЂРѕРє
 string** memory_allocation_string_matrix(int str, int col) {
 	string** matrix = new string * [str];
 	for (int i = 0; i < str; i++)
@@ -24,7 +24,7 @@ string** memory_allocation_string_matrix(int str, int col) {
 	return matrix;
 }
 
-//Выделение памяти для матрицы чисел
+//Р’С‹РґРµР»РµРЅРёРµ РїР°РјСЏС‚Рё РґР»СЏ РјР°С‚СЂРёС†С‹ С‡РёСЃРµР»
 int** memory_allocation_int_matrix(int str, int col) {
 	int** matrix = new int* [str];
 	for (int i = 0; i < str; i++)
@@ -32,7 +32,7 @@ int** memory_allocation_int_matrix(int str, int col) {
 	return matrix;
 }
 
-//Создание нулевой матрицы
+//РЎРѕР·РґР°РЅРёРµ РЅСѓР»РµРІРѕР№ РјР°С‚СЂРёС†С‹
 int** create_zero_matrix(int str, int col) {
 	int** matrix = memory_allocation_int_matrix(str, col);
 	for (int i = 0; i < str; i++)
@@ -41,7 +41,7 @@ int** create_zero_matrix(int str, int col) {
 	return matrix;
 }
 
-//Вывод матрицы целых чисел
+//Р’С‹РІРѕРґ РјР°С‚СЂРёС†С‹ С†РµР»С‹С… С‡РёСЃРµР»
 void output(int** matrix, int str, int col) {
 	for (int i = 0; i < str; i++) {
 		for (int j = 0; j < col; j++)
@@ -50,7 +50,7 @@ void output(int** matrix, int str, int col) {
 	}
 }
 
-//Освобождение памяти матрицы целых чисел
+//РћСЃРІРѕР±РѕР¶РґРµРЅРёРµ РїР°РјСЏС‚Рё РјР°С‚СЂРёС†С‹ С†РµР»С‹С… С‡РёСЃРµР»
 void free(int** matrix, int size) {
 	for (int i = 0; i < size; i++)
 		delete[] matrix[i];
