@@ -1,8 +1,8 @@
-//Гущиной Маргариты ПМИ13-БО
-//ЛАБОРАТОРНАЯ РАБОТА №5. КОДИРОВАНИЕ, ДЕКОДИРОВАНИЕ, ЧАСТОТНЫЙ АНАЛИЗ
+//Р“СѓС‰РёРЅРѕР№ РњР°СЂРіР°СЂРёС‚С‹ РџРњР13-Р‘Рћ
+//Р›РђР‘РћР РђРўРћР РќРђРЇ Р РђР‘РћРўРђ в„–5. РљРћР”РР РћР’РђРќРР•, Р”Р•РљРћР”РР РћР’РђРќРР•, Р§РђРЎРўРћРўРќР«Р™ РђРќРђР›РР—
 //
-//Задание 1. Шифровка и дешифровка
-//Вариант 1. Шифр Цезаря.Циклический сдвиг алфавита влево на 3 позиции.
+//Р—Р°РґР°РЅРёРµ 1. РЁРёС„СЂРѕРІРєР° Рё РґРµС€РёС„СЂРѕРІРєР°
+//Р’Р°СЂРёР°РЅС‚ 1. РЁРёС„СЂ Р¦РµР·Р°СЂСЏ.Р¦РёРєР»РёС‡РµСЃРєРёР№ СЃРґРІРёРі Р°Р»С„Р°РІРёС‚Р° РІР»РµРІРѕ РЅР° 3 РїРѕР·РёС†РёРё.
 
 #define _CRT_SECURE_NO_WARNINGS
 #include<iostream>
@@ -12,7 +12,7 @@
 #include"encoding_func.h"
 using namespace std;
 
-//Проверка передачи адреса файла
+//РџСЂРѕРІРµСЂРєР° РїРµСЂРµРґР°С‡Рё Р°РґСЂРµСЃР° С„Р°Р№Р»Р°
 bool check_argument_input(int num_of_arg) {
 	if (num_of_arg <= 1) {
 		cout << "No file to read.Try again";
@@ -21,7 +21,7 @@ bool check_argument_input(int num_of_arg) {
 	return 1;
 }
 
-//Проверка существования файла
+//РџСЂРѕРІРµСЂРєР° СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёСЏ С„Р°Р№Р»Р°
 bool check_file_existence(FILE* file) {
 	if (file == NULL) {
 		cout << "File not found";
@@ -39,19 +39,19 @@ int main(int argc, char* argv[]) {
 	if(check_argument_input(num_of_arg)==0)
 		return 1;
 
-	original_text = fopen(argv[1], "r");//Исходный текст
+	original_text = fopen(argv[1], "r");//РСЃС…РѕРґРЅС‹Р№ С‚РµРєСЃС‚
 	if(check_file_existence(original_text)==0)
 		return 1;
 
-	encrypted_text = fopen("GushchinaCrypt.txt", "w"); //Зашифрованный текст
+	encrypted_text = fopen("GushchinaCrypt.txt", "w"); //Р—Р°С€РёС„СЂРѕРІР°РЅРЅС‹Р№ С‚РµРєСЃС‚
 
-	crypt(original_text, encrypted_text); //Шифровка
+	crypt(original_text, encrypted_text); //РЁРёС„СЂРѕРІРєР°
 	fclose(original_text);
 	fclose(encrypted_text);
 		
 	encrypted_text = fopen("GushchinaCrypt.txt", "r");
 	decrypted_text = fopen("GushchinaDecrypt.txt", "w");
-	decrypt(encrypted_text, decrypted_text); //Дешифровка
+	decrypt(encrypted_text, decrypted_text); //Р”РµС€РёС„СЂРѕРІРєР°
 	fclose(encrypted_text);
 	fclose(decrypted_text);
 
@@ -60,7 +60,7 @@ int main(int argc, char* argv[]) {
 	if (is_identity(original_text, decrypted_text) == 1)
 		cout << "Encoding successful" << endl;
 	else
-		cout << "Error in coding" << endl; //Проверка правильности дешифровки
+		cout << "Error in coding" << endl; //РџСЂРѕРІРµСЂРєР° РїСЂР°РІРёР»СЊРЅРѕСЃС‚Рё РґРµС€РёС„СЂРѕРІРєРё
 	fclose(original_text);
 	fclose(decrypted_text);
 
