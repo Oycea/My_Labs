@@ -3,13 +3,25 @@
 
 typedef double(*function_ptr)(double, double);
 
-long int fact(int n); //Вычисление факториала
-double power(double x, int n);//Возведение в положительную степень
-double mabs(double x); //Вычисление модуля
-double input_validation(); //Проверка корректности данных
-double F1(double x, double eps); //Функция с использованием вспомогательных функций
-double F2(double x, double eps); //Функция, опирающаяся на предыдущее значение
+//Р’С‹С‡РёСЃР»РµРЅРёРµ С„Р°РєС‚РѕСЂРёР°Р»Р°
+long int fact(int n);
 
-void tabulator(function_ptr F, double a, double b, int n, double eps); //Табуляция функций, счет времени
+//Р’РѕР·РІРµРґРµРЅРёРµ РІ РїРѕР»РѕР¶РёС‚РµР»СЊРЅСѓСЋ СЃС‚РµРїРµРЅСЊ
+double power(double x, int n);
 
-#endif //_CALC_FUNC_H_#pragma once
+//Р’С‹С‡РёСЃР»РµРЅРёРµ РјРѕРґСѓР»СЏ
+double mabs(double x);
+
+//РџСЂРѕРІРµСЂРєР° РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚Рё РґР°РЅРЅС‹С…
+double input_validation();
+
+//Р¤СѓРЅРєС†РёСЏ СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј РІСЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹С… С„СѓРЅРєС†РёР№
+double F1(double x, double eps);
+
+//Р¤СѓРЅРєС†РёСЏ, РѕРїРёСЂР°СЋС‰Р°СЏСЃСЏ РЅР° РїСЂРµРґС‹РґСѓС‰РµРµ Р·РЅР°С‡РµРЅРёРµ
+double F2(double x, double eps);
+
+//РўР°Р±СѓР»СЏС†РёСЏ С„СѓРЅРєС†РёР№, СЃС‡РµС‚ РІСЂРµРјРµРЅРё
+void tabulator(function_ptr F, double a, double b, int n, double eps);
+
+#endif //_CALC_FUNC_H_
