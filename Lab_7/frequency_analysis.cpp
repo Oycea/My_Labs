@@ -6,15 +6,15 @@
 #include"frequency_analysis.h"
 using namespace std;
 
-const char symbol_arr[] = { 'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К',
-								'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц',
-								'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я', 'а', 'б', 'в',
-								'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н',
-								'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ',
-								'ъ', 'ы', 'ь', 'э', 'ю', 'я', ' ', '.', ',', '?', ':', ';',
+const char symbol_arr[] = { 'Рђ', 'Р‘', 'Р’', 'Р“', 'Р”', 'Р•', 'РЃ', 'Р–', 'Р—', 'Р', 'Р™', 'Рљ',
+								'Р›', 'Рњ', 'Рќ', 'Рћ', 'Рџ', 'Р ', 'РЎ', 'Рў', 'РЈ', 'Р¤', 'РҐ', 'Р¦',
+								'Р§', 'РЁ', 'Р©', 'РЄ', 'Р«', 'Р¬', 'Р­', 'Р®', 'РЇ', 'Р°', 'Р±', 'РІ',
+								'Рі', 'Рґ', 'Рµ', 'С‘', 'Р¶', 'Р·', 'Рё', 'Р№', 'Рє', 'Р»', 'Рј', 'РЅ',
+								'Рѕ', 'Рї', 'СЂ', 'СЃ', 'С‚', 'Сѓ', 'С„', 'С…', 'С†', 'С‡', 'С€', 'С‰',
+								'СЉ', 'С‹', 'СЊ', 'СЌ', 'СЋ', 'СЏ', ' ', '.', ',', '?', ':', ';',
 								'-', '(', ')', '!', '"' };
 
-//Количество каждого из символов
+//РљРѕР»РёС‡РµСЃС‚РІРѕ РєР°Р¶РґРѕРіРѕ РёР· СЃРёРјРІРѕР»РѕРІ
 double frequency_of_symbol(FILE* file, double count_symbol[77], double symbols_frequency[77]) {
 	int idx = 0;
 	double total_count_symbol = 0;
@@ -36,7 +36,7 @@ double frequency_of_symbol(FILE* file, double count_symbol[77], double symbols_f
 	return symbols_frequency[77];
 }
 
-//Общее количество знаков препинания
+//РћР±С‰РµРµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р·РЅР°РєРѕРІ РїСЂРµРїРёРЅР°РЅРёСЏ
 double count_punct_marks(double count_symbol[77]) {
 	int total_count_mark = 0;
 	for (int i = 67; i < 77; i++)
@@ -44,7 +44,7 @@ double count_punct_marks(double count_symbol[77]) {
 	return total_count_mark;
 }
 
-//Средняя частота для каждого из знаков препинания
+//РЎСЂРµРґРЅСЏСЏ С‡Р°СЃС‚РѕС‚Р° РґР»СЏ РєР°Р¶РґРѕРіРѕ РёР· Р·РЅР°РєРѕРІ РїСЂРµРїРёРЅР°РЅРёСЏ
 double frequency_of_punct_marks(double count_symbol[77], double punct_marks_frequency[10]) {
 	double total_count_mark = count_punct_marks(count_symbol);
 	int idx = 0;
@@ -55,12 +55,12 @@ double frequency_of_punct_marks(double count_symbol[77], double punct_marks_freq
 	return punct_marks_frequency[10];
 }
 
-//Три самых часто встречаемых знака препинания
+//РўСЂРё СЃР°РјС‹С… С‡Р°СЃС‚Рѕ РІСЃС‚СЂРµС‡Р°РµРјС‹С… Р·РЅР°РєР° РїСЂРµРїРёРЅР°РЅРёСЏ
 int three_common_punct_marks(double count_symbol[77], int i_most_common[3]) {
 	int max = 0, imax = 0, idx = 0;
 	double count_most_common[3] = { 0 };
 	for (int i = 0; i < 3; i++) {
-		for (int j = 67; j < 77; j++) //Номера знаков препинания в алфавите
+		for (int j = 67; j < 77; j++) //РќРѕРјРµСЂР° Р·РЅР°РєРѕРІ РїСЂРµРїРёРЅР°РЅРёСЏ РІ Р°Р»С„Р°РІРёС‚Рµ
 			if (count_symbol[j] > max) {
 				max = count_symbol[j];
 				imax = j;
@@ -77,7 +77,7 @@ int three_common_punct_marks(double count_symbol[77], int i_most_common[3]) {
 	return i_most_common[3];
 }
 
-//Поиск сдвига алфавита
+//РџРѕРёСЃРє СЃРґРІРёРіР° Р°Р»С„Р°РІРёС‚Р°
 int search_for_shift(double count_symbol[77]) {
 	int max = 0, imax = 0, idx = 0, i_most_common = 0, k = 0;
 	for (int j = 0; j < 66; j++)
