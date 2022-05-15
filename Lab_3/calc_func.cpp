@@ -3,31 +3,31 @@
 #include"calc_func.h"
 using namespace std;
 
-//Вычисление факториала
-long int fact(int n) {
+//Р’С‹С‡РёСЃР»РµРЅРёРµ С„Р°РєС‚РѕСЂРёР°Р»Р°
+long int fact(int n){
 	long int res = 1;
 	for (int i = 1; i <= n; i++)
 		res *= i;
 	return res;
 }
 
-//Возведение в положительную степень
-double power(double x, int n) {
+//Р’РѕР·РІРµРґРµРЅРёРµ РІ РїРѕР»РѕР¶РёС‚РµР»СЊРЅСѓСЋ СЃС‚РµРїРµРЅСЊ
+double power(double x, int n){
 	double res = 1;
 	for (int i = 1; i <= n; i++)
 		res *= x;
 	return res;
 }
 
-//Вычисление модуля
-double mabs(double x) {
+//Р’С‹С‡РёСЃР»РµРЅРёРµ РјРѕРґСѓР»СЏ
+double mabs(double x){
 	if (x > 0)
 		return x;
 	return (-1) * x;
 }
 
-//Проверка корректности данных
-double input_validation() {
+//РџСЂРѕРІРµСЂРєР° РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚Рё РґР°РЅРЅС‹С…
+double input_validation(){
 	double x;
 	cin >> x;
 	while (std::cin.fail()) {
@@ -40,8 +40,8 @@ double input_validation() {
 	return x;
 }
 
-//Функция с использованием вспомогательных функций
-double F1(double x, double eps) {
+//Р¤СѓРЅРєС†РёСЏ СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј РІСЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹С… С„СѓРЅРєС†РёР№
+double F1(double x, double eps){
 	double slag = 1;
 	double sum = 0;
 	int i = 2;
@@ -53,7 +53,7 @@ double F1(double x, double eps) {
 	return sum;
 }
 
-//Функция, опирающаяся на предыдущее значение
+//Р¤СѓРЅРєС†РёСЏ, РѕРїРёСЂР°СЋС‰Р°СЏСЃСЏ РЅР° РїСЂРµРґС‹РґСѓС‰РµРµ Р·РЅР°С‡РµРЅРёРµ
 double F2(double x, double eps) {
 	int i = 1;
 	double prew, cur = -x * x * x * x / i;
@@ -67,7 +67,7 @@ double F2(double x, double eps) {
 	return sum;
 }
 
-//Табулятор
+//РўР°Р±СѓР»СЏС‚РѕСЂ (+ РёР·РјРµСЂРµРЅРёРµ РІСЂРµРјРµРЅРё)
 typedef double(*function_ptr)(double, double);
 void tabulator(function_ptr F, double a, double b, int n, double eps) {
 	double step = (b - a + 1) / n;
