@@ -2,7 +2,7 @@
 #include"input_check.h"
 using namespace std;
 
-//Ïğîâåğêà êîğğåêòíîñòè ââîäà ğàçìåğà ìàòğèöû
+//ĞŸÑ€Ğ¾Ğ²ĞµÑ€ĞºĞ° ĞºĞ¾Ñ€Ñ€ĞµĞºÑ‚Ğ½Ğ¾ÑÑ‚Ğ¸ Ğ²Ğ²Ğ¾Ğ´Ğ° Ñ€Ğ°Ğ·Ğ¼ĞµÑ€Ğ° Ğ¼Ğ°Ñ‚Ñ€Ğ¸Ñ†Ñ‹
 int matrix_size_check() {
 	int size;
 	cin >> size;
@@ -15,7 +15,7 @@ int matrix_size_check() {
 	return size;
 }
 
-//Ïğîâåğêà êîğğåêòíîñòè ââîäà ıëåìåíòîâ ìàòğèöû
+//ĞŸÑ€Ğ¾Ğ²ĞµÑ€ĞºĞ° ĞºĞ¾Ñ€Ñ€ĞµĞºÑ‚Ğ½Ğ¾ÑÑ‚Ğ¸ Ğ²Ğ²Ğ¾Ğ´Ğ° ÑĞ»ĞµĞ¼ĞµĞ½Ñ‚Ğ¾Ğ² Ğ¼Ğ°Ñ‚Ñ€Ğ¸Ñ†Ñ‹
 double matrix_elements_check() {
 	double num;
 	cin >> num;
