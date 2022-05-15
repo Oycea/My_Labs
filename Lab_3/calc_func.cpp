@@ -54,7 +54,7 @@ double F1(double x, double eps){
 }
 
 //Функция, опирающаяся на предыдущее значение
-double F2(double x, double eps) {
+double F2(double x, double eps){
 	int i = 1;
 	double prew, cur = -x * x * x * x / i;
 	double sum = -x * x * x * x / i;
@@ -69,7 +69,7 @@ double F2(double x, double eps) {
 
 //Табулятор (+ измерение времени)
 typedef double(*function_ptr)(double, double);
-void tabulator(function_ptr F, double a, double b, int n, double eps) {
+void tabulator(function_ptr F, double a, double b, int n, double eps){
 	double step = (b - a + 1) / n;
 	double start1 = clock();
 	for (double i = a; i <= b; i += step) {
