@@ -9,7 +9,7 @@ int main() {
 	int n;
 	double det = 0;
 
-	//Ввод матриц A и В
+	//Р’РІРѕРґ РјР°С‚СЂРёС† A Рё Р’
 	cout << "Please, enter the size of a square matrix A, B: ";
 	correct_input_N(n);
 	cout << "Enter the matrix A: \n";
@@ -17,7 +17,7 @@ int main() {
 	cout << "Enter the matrix B: \n";
 	double** b_matrix = matrix_input(n, n);
 
-	//6.1 Рассчёт матриц A' и  B'
+	//6.1 Р Р°СЃСЃС‡С‘С‚ РјР°С‚СЂРёС† A' Рё  B'
 	cout << endl << "Find the matrix A' " << endl;
 	double**result_matrix= sqr_matrix_addition_num(a_matrix, n, 3);
 	double** new_a_matrix = function_calculation(result_matrix, n);
@@ -29,7 +29,7 @@ int main() {
 	sqr_matrix_output(new_b_matrix, n);
 	cout << "\n" << "======================\n";
 
-	//6.2 Поиск определителя матрицы A' разложением по первому столбцу
+	//6.2 РџРѕРёСЃРє РѕРїСЂРµРґРµР»РёС‚РµР»СЏ РјР°С‚СЂРёС†С‹ A' СЂР°Р·Р»РѕР¶РµРЅРёРµРј РїРѕ РїРµСЂРІРѕРјСѓ СЃС‚РѕР»Р±С†Сѓ
 	cout << "Matrix: " << endl;
 	sqr_matrix_output(new_a_matrix, n);
 	cout << "\n";
@@ -37,7 +37,7 @@ int main() {
 	cout << "Determinant of a matrix A' = " << det << endl;
 	cout << "======================\n";
 
-	//6.3 Решение матричного уравнения.
+	//6.3 Р РµС€РµРЅРёРµ РјР°С‚СЂРёС‡РЅРѕРіРѕ СѓСЂР°РІРЅРµРЅРёСЏ.
 	cout << "The program solves a system of two equations, finding matrices A and B!\n";
 	cout << "Given a system:\n{3A - B = A'\n|\n{6A + B = B'\n";
 	cout << "Enter matrix C1: \n";
@@ -50,7 +50,7 @@ int main() {
 	matrix_output(b_matrix, n, n);
 	cout << "======================\n";
 
-	//Очистка памяти
+	//РћС‡РёСЃС‚РєР° РїР°РјСЏС‚Рё
 	matrix_memory_clear(new_a_matrix, n);
 	matrix_memory_clear(new_b_matrix, n);
 	matrix_memory_clear(a_matrix, n);
