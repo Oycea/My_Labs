@@ -3,9 +3,9 @@
 #include<iostream>
 using namespace std;
 
-/* начальная ширина и высота окна */
+/* РЅР°С‡Р°Р»СЊРЅР°СЏ С€РёСЂРёРЅР° Рё РІС‹СЃРѕС‚Р° РѕРєРЅР° */
 GLint Width = 1024, Height = 1024;
-/* размер куба */
+/* СЂР°Р·РјРµСЂ РєСѓР±Р° */
 int CubeSize = 10;
 
 void TimerMove(int value) {
@@ -46,14 +46,15 @@ void Display(void) {
 	glEnd();
 	glFinish();
 }
-/* Функция вызывается при изменении размеров окна */
+
+/* Р¤СѓРЅРєС†РёСЏ РІС‹Р·С‹РІР°РµС‚СЃСЏ РїСЂРё РёР·РјРµРЅРµРЅРёРё СЂР°Р·РјРµСЂРѕРІ РѕРєРЅР° */
 void Reshape(GLint w, GLint h){
 	Width = w;
 	Height = h;
-	/* устанавливаем размеры области отображения */
+	/* СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј СЂР°Р·РјРµСЂС‹ РѕР±Р»Р°СЃС‚Рё РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ */
 	glViewport(0, 0, w, h);
 
-	/* ортографическая проекция */
+	/* РѕСЂС‚РѕРіСЂР°С„РёС‡РµСЃРєР°СЏ РїСЂРѕРµРєС†РёСЏ */
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	glOrtho(0, w, 0, h, -1.0, 1.0);
@@ -62,13 +63,13 @@ void Reshape(GLint w, GLint h){
 	glLoadIdentity();
 }
 
-/*Фунция для изменения масштаба изображения*/
+/*Р¤СѓРЅС†РёСЏ РґР»СЏ РёР·РјРµРЅРµРЅРёСЏ РјР°СЃС€С‚Р°Р±Р° РёР·РѕР±СЂР°Р¶РµРЅРёСЏ*/
 void SpecKeyboard(int key, int x, int y) {
 	if (key == GLUT_KEY_UP) CubeSize *= (CubeSize < 1024) ? 2 : 1;
 	if (key == GLUT_KEY_DOWN) CubeSize /= (CubeSize > 0) ? 2 : 1;
 }
-void Keyboard(unsigned char key, int x, int y)
-{
+
+void Keyboard(unsigned char key, int x, int y){
 #define ESCAPE '\033'
 
 	if (key == ESCAPE)

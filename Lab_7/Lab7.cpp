@@ -7,7 +7,7 @@
 #include"decrypt.h"
 using namespace std;
 
-//Проверка передачи адреса файла
+//РџСЂРѕРІРµСЂРєР° РїРµСЂРµРґР°С‡Рё Р°РґСЂРµСЃР° С„Р°Р№Р»Р°
 bool check_argument_input(int num_of_arg) {
 	if (num_of_arg <= 1) {
 		cout << "No file to read.Try again";
@@ -16,7 +16,7 @@ bool check_argument_input(int num_of_arg) {
 	return 1;
 }
 
-//Проверка существования файла
+//РџСЂРѕРІРµСЂРєР° СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёСЏ С„Р°Р№Р»Р°
 bool check_file_existence(FILE* file) {
 	if (file == NULL) {
 		cout << "File not found";
@@ -38,11 +38,11 @@ int main(int argc, char* argv[]) {
 	if (check_argument_input(num_of_arg) == 0)
 		return 1;
 
-	encrypted_text = fopen(argv[1], "r");//Исходный текст
+	encrypted_text = fopen(argv[1], "r");//РСЃС…РѕРґРЅС‹Р№ С‚РµРєСЃС‚
 	if (check_file_existence(encrypted_text) == 0)
 		return 1;
 
-	//Частотный анализ всех символов
+	//Р§Р°СЃС‚РѕС‚РЅС‹Р№ Р°РЅР°Р»РёР· РІСЃРµС… СЃРёРјРІРѕР»РѕРІ
 	frequency_of_symbol(encrypted_text, count_symbol, symbols_frequency);
 	fclose(encrypted_text);
 	encrypted_text = fopen(argv[1], "r");
@@ -51,13 +51,13 @@ int main(int argc, char* argv[]) {
 
 	encrypted_text = fopen(argv[1], "r");
 	decrypted_text = fopen("GushchinaDecrypt1.txt", "w");
-	decrypt_Caesars_decipher(encrypted_text, decrypted_text, k); //Дешифровка
+	decrypt_Caesars_decipher(encrypted_text, decrypted_text, k); //Р”РµС€РёС„СЂРѕРІРєР°
 	fclose(encrypted_text);
 	fclose(decrypted_text);
 
 	encrypted_text = fopen(argv[1], "r");
 	decrypted_text = fopen("GushchinaDecrypt2.txt", "w");
-	decrypt_keyboard_decipher(encrypted_text, decrypted_text); //Дешифровка
+	decrypt_keyboard_decipher(encrypted_text, decrypted_text); //Р”РµС€РёС„СЂРѕРІРєР°
 	fclose(encrypted_text);
 	fclose(decrypted_text);
 

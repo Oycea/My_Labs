@@ -1,4 +1,7 @@
-//Конь, поле 4, задание I
+//Р“СѓС‰РёРЅРѕР№ РњР°СЂРіР°СЂРёС‚С‹ РџРњР13-Р‘Рћ
+//Р›РђР‘РћР РђРўРћР РќРђРЇ Р РђР‘РћРўРђ в„–4. Р”Р’РР–Р•РќРР• Р¤РР“РЈР Р« РџРћ Р”РћРЎРљР•
+//
+////РљРѕРЅСЊ, РїРѕР»Рµ 4, Р·Р°РґР°РЅРёРµ I
 
 #include<iostream>
 #include<cmath>
@@ -19,8 +22,8 @@ int input_validation() {
 
 int main() {
 	int start_pos, last_row, row, start_idx;
-	int idx_first_step[6] = { 0 }; //Массив, записывающий номера клеток после первого хода
-	int idx_second_step[36] = { 0 }; //Массив, записывающий номера клеток после второго хода
+	int idx_first_step[6] = { 0 }; //РњР°СЃСЃРёРІ, Р·Р°РїРёСЃС‹РІР°СЋС‰РёР№ РЅРѕРјРµСЂР° РєР»РµС‚РѕРє РїРѕСЃР»Рµ РїРµСЂРІРѕРіРѕ С…РѕРґР°
+	int idx_second_step[36] = { 0 }; //РњР°СЃСЃРёРІ, Р·Р°РїРёСЃС‹РІР°СЋС‰РёР№ РЅРѕРјРµСЂР° РєР»РµС‚РѕРє РїРѕСЃР»Рµ РІС‚РѕСЂРѕРіРѕ С…РѕРґР°
 
 	cout << "Enter the number of rows: ";
 	last_row = input_validation();
@@ -31,9 +34,9 @@ int main() {
 	cout << endl << "The numbers of the squares where the knight will get in two moves from a given point of the field: " << endl;
 
 	start_idx = defindion_idx(row, start_pos);
-	//Индексы первого хода
+	//РРЅРґРµРєСЃС‹ РїРµСЂРІРѕРіРѕ С…РѕРґР°
 	movement_options(start_idx, last_row, idx_first_step);
-	//Индексы второго хода
+	//РРЅРґРµРєСЃС‹ РІС‚РѕСЂРѕРіРѕ С…РѕРґР°
 	for (int i = 0; i < 6; i++)
 		movement_options(idx_first_step[i], last_row, idx_second_step+i*6);
 	delet_unsuitable_idx(idx_second_step);

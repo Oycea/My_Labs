@@ -6,25 +6,25 @@
 #include"encoding_func.h"
 using namespace std;
 
-//Øèôð Öåçàðÿ (öèêëè÷åñêèé ñäâèã àëôàâèòà âëåâî íà 3 ïîçèöèè)
+//Ð¨Ð¸Ñ„Ñ€ Ð¦ÐµÐ·Ð°Ñ€Ñ (Ñ†Ð¸ÐºÐ»Ð¸Ñ‡ÐµÑÐºÐ¸Ð¹ ÑÐ´Ð²Ð¸Ð³ Ð°Ð»Ñ„Ð°Ð²Ð¸Ñ‚Ð° Ð²Ð»ÐµÐ²Ð¾ Ð½Ð° 3 Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ð¸)
 char Caesars_cipher(char letter) {
-	if (letter >= 'À' && letter <= 'ß')
-		letter = ((letter - 'À' + 3) % 32) + 'À';
-	else if (letter >= 'à' && letter <= 'ÿ')
-		letter = ((letter - 'à' + 3) % 32) + 'à';
+	if (letter >= 'Ã€' && letter <= 'ÃŸ')
+		letter = ((letter - 'Ã€' + 3) % 32) + 'Ã€';
+	else if (letter >= 'Ã ' && letter <= 'Ã¿')
+		letter = ((letter - 'Ã ' + 3) % 32) + 'Ã ';
 	return letter;
 }
 
-//Äåøèôðîâêà ïî øèôðó Öåçàðÿ
+//Ð”ÐµÑˆÐ¸Ñ„Ñ€Ð¾Ð²ÐºÐ° Ð¿Ð¾ ÑˆÐ¸Ñ„Ñ€Ñƒ Ð¦ÐµÐ·Ð°Ñ€Ñ
 char Caesars_decipher(char letter) {
-	if (letter >= 'À' && letter <= 'ß')
-		letter = ((letter - 'À' - 3 + 32) % 32) + 'À';
-	else if (letter >= 'à' && letter <= 'ÿ')
-			letter = ((letter - 'à' - 3 + 32) % 32) + 'à';
+	if (letter >= 'Ã€' && letter <= 'ÃŸ')
+		letter = ((letter - 'Ã€' - 3 + 32) % 32) + 'Ã€';
+	else if (letter >= 'Ã ' && letter <= 'Ã¿')
+			letter = ((letter - 'Ã ' - 3 + 32) % 32) + 'Ã ';
 	return letter;
 }
 
-//Øèôðîâêà ôàéëà
+//Ð¨Ð¸Ñ„Ñ€Ð¾Ð²ÐºÐ° Ñ„Ð°Ð¹Ð»Ð°
 void crypt(FILE* original_text, FILE* encrypted_text) {
 	char letter;
 	letter = getc(original_text);
@@ -35,7 +35,7 @@ void crypt(FILE* original_text, FILE* encrypted_text) {
 	}
 }
 
-//Äåøèôðîâêà ôàéëà
+//Ð”ÐµÑˆÐ¸Ñ„Ñ€Ð¾Ð²ÐºÐ° Ñ„Ð°Ð¹Ð»Ð°
 void decrypt(FILE* encrypted_text, FILE* decrypted_text) {
 	char letter;
 	letter = getc(encrypted_text);
@@ -46,7 +46,7 @@ void decrypt(FILE* encrypted_text, FILE* decrypted_text) {
 	}
 }
 
-//Ïðîâåðêà èäåíòè÷íîñòè îðèãèíàëüíîãî è äåøèôðîâàííîãî òåêñòà
+//ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¸Ð´ÐµÐ½Ñ‚Ð¸Ñ‡Ð½Ð¾ÑÑ‚Ð¸ Ð¾Ñ€Ð¸Ð³Ð¸Ð½Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð¸ Ð´ÐµÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ð½Ð½Ð¾Ð³Ð¾ Ñ‚ÐµÐºÑÑ‚Ð°
 bool is_identity(FILE* original_text, FILE* decrypted_text) {
 	char orig_text_character, decrypt_text_character;
 	int num_of_differences = 0;

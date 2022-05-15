@@ -1,16 +1,16 @@
 #ifndef _DECRYPT_H_
 #define _DECRYPT_H_
 
-//Дешифровка по шифру Цезаря
+//Р”РµС€РёС„СЂРѕРІРєР° РїРѕ С€РёС„СЂСѓ Р¦РµР·Р°СЂСЏ
 char Caesars_decipher(char letter, int k);
 
-//Дешифровка шифра по порядку букв на клавиатуре (сдвиг влево)
+//Р”РµС€РёС„СЂРѕРІРєР° С€РёС„СЂР° РїРѕ РїРѕСЂСЏРґРєСѓ Р±СѓРєРІ РЅР° РєР»Р°РІРёР°С‚СѓСЂРµ (СЃРґРІРёРі РІР»РµРІРѕ)
 char keyboard_decipher(char letter);
 
-//Дешифровка файла с шифром Цезаря
+//Р”РµС€РёС„СЂРѕРІРєР° С„Р°Р№Р»Р° СЃ С€РёС„СЂРѕРј Р¦РµР·Р°СЂСЏ
 void decrypt_Caesars_decipher(FILE* encrypted_text, FILE* decrypted_text, int k);
 
-//Дешифровка файла со сдвигом букв на клавиатуре
+//Р”РµС€РёС„СЂРѕРІРєР° С„Р°Р№Р»Р° СЃРѕ СЃРґРІРёРіРѕРј Р±СѓРєРІ РЅР° РєР»Р°РІРёР°С‚СѓСЂРµ
 void decrypt_keyboard_decipher(FILE* encrypted_text, FILE* decrypted_text);
 
-#endif //_DECRYPTH_
+#endif //_DECRYPT_H_

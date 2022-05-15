@@ -1,19 +1,19 @@
 #ifndef _ENCODING_FUNC_H_
 #define _ENCODING_FUNC_H_
 
-//Шифр Цезаря (циклический сдвиг алфавита влево на 3 позиции)
+//РЁРёС„СЂ Р¦РµР·Р°СЂСЏ (С†РёРєР»РёС‡РµСЃРєРёР№ СЃРґРІРёРі Р°Р»С„Р°РІРёС‚Р° РІР»РµРІРѕ РЅР° 3 РїРѕР·РёС†РёРё)
 char Caesars_cipher(char letter);
 
-//Дешифровка по шифру Цезаря
+//Р”РµС€РёС„СЂРѕРІРєР° РїРѕ С€РёС„СЂСѓ Р¦РµР·Р°СЂСЏ
 char Caesars_decipher(char letter);
 
-//Шифровка файла
+//РЁРёС„СЂРѕРІРєР° С„Р°Р№Р»Р°
 void crypt(FILE* original_text, FILE* encrypted_text);
 
-//Дешифровка файла
+//Р”РµС€РёС„СЂРѕРІРєР° С„Р°Р№Р»Р°
 void decrypt(FILE* encrypted_text, FILE* decrypted_text);
 
-//Проверка идентичности оригинального и дешифрованного текстов
+//РџСЂРѕРІРµСЂРєР° РёРґРµРЅС‚РёС‡РЅРѕСЃС‚Рё РѕСЂРёРіРёРЅР°Р»СЊРЅРѕРіРѕ Рё РґРµС€РёС„СЂРѕРІР°РЅРЅРѕРіРѕ С‚РµРєСЃС‚РѕРІ
 bool is_identity(FILE* original_text, FILE* decrypted_text);
 
 #endif //_ENCODING_FUNC_H_

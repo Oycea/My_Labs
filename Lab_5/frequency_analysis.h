@@ -1,16 +1,16 @@
 #ifndef _FREQUENCY_ANALYSIS_H_
 #define _FREQUENCY_ANALYSIS_H_
 
-//Количество каждого из символов
+//РљРѕР»РёС‡РµСЃС‚РІРѕ РєР°Р¶РґРѕРіРѕ РёР· СЃРёРјРІРѕР»РѕРІ
 double frequency_of_symbol(FILE* file, double count_symbol[77], double symbols_frequency[77]);
 
-//Общее количество знаков препинания
+//РћР±С‰РµРµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р·РЅР°РєРѕРІ РїСЂРµРїРёРЅР°РЅРёСЏ
 double count_punct_marks(double count_symbol[77]);
 
-//Средняя частота для каждого из знаков препинания
+//РЎСЂРµРґРЅСЏСЏ С‡Р°СЃС‚РѕС‚Р° РґР»СЏ РєР°Р¶РґРѕРіРѕ РёР· Р·РЅР°РєРѕРІ РїСЂРµРїРёРЅР°РЅРёСЏ
 double frequency_of_punct_marks(double count_symbol[77], double punct_marks_frequency[10]);
 
-//Три самых часто встречаемых знака препинания
+//РўСЂРё СЃР°РјС‹С… С‡Р°СЃС‚Рѕ РІСЃС‚СЂРµС‡Р°РµРјС‹С… Р·РЅР°РєР° РїСЂРµРїРёРЅР°РЅРёСЏ
 int three_common_punct_marks(double count_symbol[77], int i_most_common[3]);
 
 #endif //_FREQUENCY_ANALYSIS_H_
