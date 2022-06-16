@@ -7,7 +7,7 @@
 using namespace std;
 
 template <class Type>
-//Узел двоичного дерева
+//РЈР·РµР» РґРІРѕРёС‡РЅРѕРіРѕ РґРµСЂРµРІР°
 class bin_tree_node {
 private:
 	Type _value;
@@ -16,14 +16,14 @@ private:
 	bin_tree_node<Type>* _right;
 	bin_tree_node<Type>* _parent;
 public:
-	//Конструктор
+	//РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
 	bin_tree_node(Type value = Type()) : _value(value), _height(1), 
 	_left(0), _right(0), _parent(0) {}
 
-	//Деструктор
+	//Р”РµСЃС‚СЂСѓРєС‚РѕСЂ
 	~bin_tree_node() {}
 
-	//Фуекция, проверяющая является ли узел листом
+	//Р¤СѓРµРєС†РёСЏ, РїСЂРѕРІРµСЂСЏСЋС‰Р°СЏ СЏРІР»СЏРµС‚СЃСЏ Р»Рё СѓР·РµР» Р»РёСЃС‚РѕРј
 	bool is_leaf() { return _left == 0 && _right == 0; }
 
 	template <class Type1> 
@@ -31,14 +31,14 @@ public:
 };
 
 template <class Type>
-//Структура двоиного дерева
+//РЎС‚СЂСѓРєС‚СѓСЂР° РґРІРѕРёРЅРѕРіРѕ РґРµСЂРµРІР°
 class bin_tree {
 public:
 	bin_tree() : _root(0) {}
 
 	~bin_tree() { destroy(_root); }
 
-	//ОБЁРТКИ ФУНКЦИЙ
+	//РћР‘РЃР РўРљР Р¤РЈРќРљР¦РР™
 
 	bin_tree_node<Type>* find(const Type& val) const { return find(_root, val); }
 
@@ -70,7 +70,7 @@ public:
 private:
 	bin_tree_node<Type>* _root;
 
-	//Поиск значения
+	//РџРѕРёСЃРє Р·РЅР°С‡РµРЅРёСЏ
 	bin_tree_node<Type>* find(bin_tree_node<Type>* pos, const Type& value) const {
 		if (!pos) return 0;
 		if (pos->_value == value) return pos;
@@ -78,19 +78,19 @@ private:
 		return find(pos->_left, value);
 	}
 
-	//Добавление нового значения в двоичное дерево
+	//Р”РѕР±Р°РІР»РµРЅРёРµ РЅРѕРІРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ РІ РґРІРѕРёС‡РЅРѕРµ РґРµСЂРµРІРѕ
 	bin_tree_node<Type>* add_node(bin_tree_node<Type>* pos, const Type value) {
-		// Если место свободно, то вставляем туда узел.
+		// Р•СЃР»Рё РјРµСЃС‚Рѕ СЃРІРѕР±РѕРґРЅРѕ, С‚Рѕ РІСЃС‚Р°РІР»СЏРµРј С‚СѓРґР° СѓР·РµР».
 		if (!pos) return new bin_tree_node<Type>(value);
-		//Иначе проверяем значения
-		//Если новое значение больше, то вставляем вправо
+		//РРЅР°С‡Рµ РїСЂРѕРІРµСЂСЏРµРј Р·РЅР°С‡РµРЅРёСЏ
+		//Р•СЃР»Рё РЅРѕРІРѕРµ Р·РЅР°С‡РµРЅРёРµ Р±РѕР»СЊС€Рµ, С‚Рѕ РІСЃС‚Р°РІР»СЏРµРј РІРїСЂР°РІРѕ
 		if (pos->_value < value) pos->_right = add_node(pos->_right, value);
-		//Если новое значение меньше, то вставляем влево
+		//Р•СЃР»Рё РЅРѕРІРѕРµ Р·РЅР°С‡РµРЅРёРµ РјРµРЅСЊС€Рµ, С‚Рѕ РІСЃС‚Р°РІР»СЏРµРј РІР»РµРІРѕ
 		else if (pos->_value > value) pos->_left = add_node(pos->_left, value);
 		return balance(pos);
 	}
 
-	//Правый поворот двоичного дерева вокруг pos
+	//РџСЂР°РІС‹Р№ РїРѕРІРѕСЂРѕС‚ РґРІРѕРёС‡РЅРѕРіРѕ РґРµСЂРµРІР° РІРѕРєСЂСѓРі pos
 	bin_tree_node<Type>* rotate_right(bin_tree_node<Type>* pos){
 		bin_tree_node<Type>* tmp = pos->_left;
 		pos->_left = tmp->_right;
@@ -100,7 +100,7 @@ private:
 		return tmp;
 	}
 
-	//Левый поворот двоичного дерева вокруг pos
+	//Р›РµРІС‹Р№ РїРѕРІРѕСЂРѕС‚ РґРІРѕРёС‡РЅРѕРіРѕ РґРµСЂРµРІР° РІРѕРєСЂСѓРі pos
 	bin_tree_node<Type>* rotate_left(bin_tree_node<Type>* pos){
 		bin_tree_node<Type>* tmp = pos->_right;
 		pos->_right = tmp->_left;
@@ -110,18 +110,18 @@ private:
 		return tmp;
 	}
 
-	//Балансировка pos
+	//Р‘Р°Р»Р°РЅСЃРёСЂРѕРІРєР° pos
 	bin_tree_node<Type>* balance(bin_tree_node<Type>* pos){
 		fix_height(pos);
-		//Баланс положительный => высота правого поддерева больше левого => 
-		// => нужен поворот налево вокруг pos.
+		//Р‘Р°Р»Р°РЅСЃ РїРѕР»РѕР¶РёС‚РµР»СЊРЅС‹Р№ => РІС‹СЃРѕС‚Р° РїСЂР°РІРѕРіРѕ РїРѕРґРґРµСЂРµРІР° Р±РѕР»СЊС€Рµ Р»РµРІРѕРіРѕ => 
+		// => РЅСѓР¶РµРЅ РїРѕРІРѕСЂРѕС‚ РЅР°Р»РµРІРѕ РІРѕРєСЂСѓРі pos.
 		if (balance_factor(pos) == 2){
 			if (balance_factor(pos->_right) < 0)
 				pos->_right = rotate_right(pos->_right);
 			return rotate_left(pos);
 		}
-		//Баланс отрицательный => высота левого поддерева больше правого => 
-		// => нужен поворот направо вокруг pos.
+		//Р‘Р°Р»Р°РЅСЃ РѕС‚СЂРёС†Р°С‚РµР»СЊРЅС‹Р№ => РІС‹СЃРѕС‚Р° Р»РµРІРѕРіРѕ РїРѕРґРґРµСЂРµРІР° Р±РѕР»СЊС€Рµ РїСЂР°РІРѕРіРѕ => 
+		// => РЅСѓР¶РµРЅ РїРѕРІРѕСЂРѕС‚ РЅР°РїСЂР°РІРѕ РІРѕРєСЂСѓРі pos.
 		if (balance_factor(pos) == -2){
 			if (balance_factor(pos->_left) > 0)
 				pos->_left = rotate_left(pos->_left);
@@ -130,14 +130,14 @@ private:
 		return pos;
 	}
 
-	//Поиск позиции минимального элемента
+	//РџРѕРёСЃРє РїРѕР·РёС†РёРё РјРёРЅРёРјР°Р»СЊРЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
 	bin_tree_node<Type>* find_pos_min(bin_tree_node<Type>* pos) const {
 		if (!pos) throw string("ERROR: binary tree is empty!\n");
 		if (pos->_left) return find_pos_min(pos->_left);
 		return pos;
 	}
 
-	//Поиск максимума
+	//РџРѕРёСЃРє РјР°РєСЃРёРјСѓРјР°
 	Type find_max(bin_tree_node<Type>* pos) const {
 		if (!pos) throw string("Error: binary tree is empty\n");
 		while (!pos->_right)
@@ -145,7 +145,7 @@ private:
 		return pos->_value;
 	}
 
-	//Поиск минимума
+	//РџРѕРёСЃРє РјРёРЅРёРјСѓРјР°
 	Type find_min(bin_tree_node<Type>* pos) const {
 		if (!pos) throw string("Error: binary tree is empty\n");
 		while (!pos->_left)
@@ -153,7 +153,7 @@ private:
 		return pos->_value;
 	}
 
-	//Подсчёт высоты дерева
+	//РџРѕРґСЃС‡С‘С‚ РІС‹СЃРѕС‚С‹ РґРµСЂРµРІР°
 	int count_height(bin_tree_node<Type>* pos) {
 		if (pos == 0) return 0;
 		int left, right;
@@ -163,33 +163,33 @@ private:
 		return right + 1;
 	}
 
-	//Обёртка для поля высоты
+	//РћР±С‘СЂС‚РєР° РґР»СЏ РїРѕР»СЏ РІС‹СЃРѕС‚С‹
 	int get_height(bin_tree_node<Type>* pos) {
 		if (!pos) return 0;
 		else return pos->height;
 	}
 
-	//Вычисление баланса заданного узла
+	//Р’С‹С‡РёСЃР»РµРЅРёРµ Р±Р°Р»Р°РЅСЃР° Р·Р°РґР°РЅРЅРѕРіРѕ СѓР·Р»Р°
 	int balance_factor(bin_tree_node<Type>* pos) const { 
 		if (!pos) return 0;
 		return get_height(pos->_right) - get_height(pos->_left); 
 	}
 
-	//Подсчёт количества элементов
+	//РџРѕРґСЃС‡С‘С‚ РєРѕР»РёС‡РµСЃС‚РІР° СЌР»РµРјРµРЅС‚РѕРІ
 	int count_elements(bin_tree_node<Type>* pos) {
 		if (pos == 0) return 0;
 		return count_elements(pos->_left) + count_elements(pos->_right) + 1;
 	}
 
-	//Восстановление значения высоты заданного узла
+	//Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ Р·РЅР°С‡РµРЅРёСЏ РІС‹СЃРѕС‚С‹ Р·Р°РґР°РЅРЅРѕРіРѕ СѓР·Р»Р°
 	void fix_height(bin_tree_node<Type>* pos) { 
 		if (!pos) return;
 		pos->_height = max(get_height(pos->_left), get_height(pos->_right)) + 1; 
 	}
 
-	//УДАЛЕНИЕ
+	//РЈР”РђР›Р•РќРР•
 
-	//Удаление, не сохраняющее сбалансированность дерева
+	//РЈРґР°Р»РµРЅРёРµ, РЅРµ СЃРѕС…СЂР°РЅСЏСЋС‰РµРµ СЃР±Р°Р»Р°РЅСЃРёСЂРѕРІР°РЅРЅРѕСЃС‚СЊ РґРµСЂРµРІР°
 	void remove_leaf(bin_tree_node<Type>* pos) {
 		if (!pos->_parent) _root = nullptr;
 		else if (pos->_parent->_left == pos) pos->_parent->_left = nullptr;
@@ -227,7 +227,7 @@ private:
 		remove(pos);
 	}
 
-	//Удаление, сохраняющее сбалансированность дерева
+	//РЈРґР°Р»РµРЅРёРµ, СЃРѕС…СЂР°РЅСЏСЋС‰РµРµ СЃР±Р°Р»Р°РЅСЃРёСЂРѕРІР°РЅРЅРѕСЃС‚СЊ РґРµСЂРµРІР°
 	bin_tree_node<Type>* balance_remove(bin_tree_node<Type>* pos, const Type val) {
 		if (!pos) return pos;
 		if (val < pos->_value)
@@ -256,7 +256,7 @@ private:
 		return balance(pos);
 	}
 
-	//Функция удаления дерева
+	//Р¤СѓРЅРєС†РёСЏ СѓРґР°Р»РµРЅРёСЏ РґРµСЂРµРІР°
 	void destroy(bin_tree_node<Type>* pos) {
 		if (!pos) return;
 		destroy(pos->_left);
@@ -264,9 +264,9 @@ private:
 		delete pos;
 	}
 
-	//ВЫВОД
+	//Р’Р«Р’РћР”
 
-	//Вывод листьев двоичного дерева
+	//Р’С‹РІРѕРґ Р»РёСЃС‚СЊРµРІ РґРІРѕРёС‡РЅРѕРіРѕ РґРµСЂРµРІР°
 	void print_leafs(bin_tree_node<Type>* pos) const {
 		if (pos == nullptr) return;
 		print_leafs(pos->_left);
@@ -275,14 +275,14 @@ private:
 		print_leafs(pos->_right);
 	}
 
-	//Вывод вершин, имеющих по два ребёнка
+	//Р’С‹РІРѕРґ РІРµСЂС€РёРЅ, РёРјРµСЋС‰РёС… РїРѕ РґРІР° СЂРµР±С‘РЅРєР°
 	void print_fork(bin_tree_node<Type>* pos) const {
 		if (pos->_left) print_fork(pos->_left);
 		if ((pos->_left) && (pos->_right)) cout << pos->_value << endl;
 		if (pos->_right) print_fork(pos->_right);
 	}
 
-	//Вывод вершин, имеющих только одного ребёнка
+	//Р’С‹РІРѕРґ РІРµСЂС€РёРЅ, РёРјРµСЋС‰РёС… С‚РѕР»СЊРєРѕ РѕРґРЅРѕРіРѕ СЂРµР±С‘РЅРєР°
 	void print_branch(bin_tree_node<Type>* pos) const {
 		if (pos->_left) print_branch(pos->_left);
 		if (((pos->_left != 0) && (pos->_right == 0)) ||
@@ -291,7 +291,7 @@ private:
 		if (pos->_right) print_branch(pos->_right);
 	}
 
-	//Обход по возрастанию
+	//РћР±С…РѕРґ РїРѕ РІРѕР·СЂР°СЃС‚Р°РЅРёСЋ
 	void print_ascending(bin_tree_node<Type>* pos) const {
 		if (!pos) return;
 		if (pos->_left) print_ascending(pos->_left);
@@ -299,7 +299,7 @@ private:
 		if (pos->_right) print_ascending(pos->_right);
 	}
 
-	//Обратный обход
+	//РћР±СЂР°С‚РЅС‹Р№ РѕР±С…РѕРґ
 	void print_reverse(bin_tree_node<Type>* pos) const {
 		if (!pos) return;
 		if (pos->_left) print_reverse(pos->_left);
@@ -307,15 +307,15 @@ private:
 		cout << pos->_value << endl;
 	}
 
-	//Вывод двоичного дерева
-	//Вывод дерева в строку
+	//Р’С‹РІРѕРґ РґРІРѕРёС‡РЅРѕРіРѕ РґРµСЂРµРІР°
+	//Р’С‹РІРѕРґ РґРµСЂРµРІР° РІ СЃС‚СЂРѕРєСѓ
 	void print(bin_tree_node<Type>* pos) const {
 		if (!pos) return;
 		print(pos->_right);
 		cout << pos->_value << ' ';
 		print(pos->_left);
 	}
-	//Вывод дерева с отступами и сдвигами
+	//Р’С‹РІРѕРґ РґРµСЂРµРІР° СЃ РѕС‚СЃС‚СѓРїР°РјРё Рё СЃРґРІРёРіР°РјРё
 	void print(bin_tree_node<Type>* pos, int level) const {
 		if (!pos) return;
 		print(pos->_right, level + 1);
