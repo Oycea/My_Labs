@@ -17,14 +17,14 @@ ostream& operator<<(ostream& output, const train& object) {
 }
 
 int train::operator<(const train& object) const {
-	// Если совпадает время отправки -> сравниваем номера маршрутов.
+	// Р•СЃР»Рё СЃРѕРІРїР°РґР°РµС‚ РІСЂРµРјСЏ РѕС‚РїСЂР°РІРєРё -> СЃСЂР°РІРЅРёРІР°РµРј РЅРѕРјРµСЂР° РјР°СЂС€СЂСѓС‚РѕРІ.
 	if (_departure_time == object._departure_time)
 		return _number < object._number;
 	return _departure_time < object._departure_time;
 }
 
 int train::operator>(const train& object) const {
-	// Если совпадает время отправки -> сравниваем номера маршрутов.
+	// Р•СЃР»Рё СЃРѕРІРїР°РґР°РµС‚ РІСЂРµРјСЏ РѕС‚РїСЂР°РІРєРё -> СЃСЂР°РІРЅРёРІР°РµРј РЅРѕРјРµСЂР° РјР°СЂС€СЂСѓС‚РѕРІ.
 	if (_departure_time == object._departure_time)
 		return _number > object._number;
 	return _departure_time > object._departure_time;
