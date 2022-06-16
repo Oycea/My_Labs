@@ -7,31 +7,31 @@ using namespace std;
 
 class marsh{
 private:
-	// Начальный и конечный пункты маршрута.
+	// РќР°С‡Р°Р»СЊРЅС‹Р№ Рё РєРѕРЅРµС‡РЅС‹Р№ РїСѓРЅРєС‚С‹ РјР°СЂС€СЂСѓС‚Р°.
 	string _start_point, _end_point;
-	// Номер маршрута.
+	// РќРѕРјРµСЂ РјР°СЂС€СЂСѓС‚Р°.
 	int _route_number;
 
 public:
 
-	// КОНСТРУКТОРЫ.
+	// РљРћРќРЎРўР РЈРљРўРћР Р«.
 	marsh() : _start_point(""), _end_point(""), _route_number(0) {}
 	marsh(const string&, const string&, const int);
 	marsh(const marsh&);
 
-	// ДЕСТРУКТОР.
+	// Р”Р•РЎРўР РЈРљРўРћР .
 	~marsh() {}
 
-	// ГЕТТЕРЫ.
+	// Р“Р•РўРўР•Р Р«.
 	string get_start_point() const { return _start_point; }
 	string get_end_point() const { return _end_point; }
 	int get_route_number() const { return _route_number; }
 
-	// ПЕРЕОПРЕДЕЛЕНИЕ ОПЕРАТОРОВ.
+	// РџР•Р Р•РћРџР Р•Р”Р•Р›Р•РќРР• РћРџР•Р РђРўРћР РћР’.
 
 	friend ostream& operator<<(ostream&, const marsh&);
 
-	//Сравнение идёт по номерам маршрутов.
+	//РЎСЂР°РІРЅРµРЅРёРµ РёРґС‘С‚ РїРѕ РЅРѕРјРµСЂР°Рј РјР°СЂС€СЂСѓС‚РѕРІ.
 	int operator<(const marsh&) const;
 	int operator>(const marsh&) const;
 	int operator==(const marsh&) const;
