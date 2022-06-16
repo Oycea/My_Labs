@@ -7,31 +7,31 @@ using namespace std;
 
 class train {
 private:
-	// Номер поезда (равен номеру маршрута).
+	// РќРѕРјРµСЂ РїРѕРµР·РґР° (СЂР°РІРµРЅ РЅРѕРјРµСЂСѓ РјР°СЂС€СЂСѓС‚Р°).
 	int _number;
-	// Время отправки.
+	// Р’СЂРµРјСЏ РѕС‚РїСЂР°РІРєРё.
 	string _departure_time;
 
 public:
 
-	// КОНСТРУКТОРЫ.
+	// РљРћРќРЎРўР РЈРљРўРћР Р«.
 	train() : _number(0), _departure_time("00:00:00") {}
 	train(const int route_number) : _number(route_number), _departure_time("00:00:00") {}
 	train(const int, const string&);
 
-	// ДЕСТРУКТОР.
+	// Р”Р•РЎРўР РЈРљРўРћР .
 	~train() {}
 
-	// ГЕТТЕРЫ.
+	// Р“Р•РўРўР•Р Р«.
 	int get_number() const { return _number; }
 	string get_departure_time() const { return _departure_time; }
 
-	// ПЕРЕОПРЕДЕЛЕНИЕ ОПЕРАТОРОВ.
+	// РџР•Р Р•РћРџР Р•Р”Р•Р›Р•РќРР• РћРџР•Р РђРўРћР РћР’.
 
 	friend ostream& operator<<(ostream&, const train&);
 
-	//Сравнение идёт по времени отправки
-	//Если время одинаковое, сравниваем по номерам маршрутов
+	//РЎСЂР°РІРЅРµРЅРёРµ РёРґС‘С‚ РїРѕ РІСЂРµРјРµРЅРё РѕС‚РїСЂР°РІРєРё
+	//Р•СЃР»Рё РІСЂРµРјСЏ РѕРґРёРЅР°РєРѕРІРѕРµ, СЃСЂР°РІРЅРёРІР°РµРј РїРѕ РЅРѕРјРµСЂР°Рј РјР°СЂС€СЂСѓС‚РѕРІ
 
 	int operator<(const train&) const;
 	int operator>(const train&) const;
