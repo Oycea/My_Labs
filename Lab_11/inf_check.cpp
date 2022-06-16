@@ -1,6 +1,6 @@
 #include"inf_check.h"
 
-// Проверка: корректно ли имя файла.
+// РџСЂРѕРІРµСЂРєР°: РєРѕСЂСЂРµРєС‚РЅРѕ Р»Рё РёРјСЏ С„Р°Р№Р»Р°.
 void check_file_name(string& file_name) {
 	cin >> file_name;
 	ifstream finput(file_name);
@@ -12,7 +12,7 @@ void check_file_name(string& file_name) {
 	finput.close();
 }
 
-// Проверка: является ли введённое число положительным.
+// РџСЂРѕРІРµСЂРєР°: СЏРІР»СЏРµС‚СЃСЏ Р»Рё РІРІРµРґС‘РЅРЅРѕРµ С‡РёСЃР»Рѕ РїРѕР»РѕР¶РёС‚РµР»СЊРЅС‹Рј.
 void check_pos_int(int& num) {
 	cin >> num;
 	while (cin.fail() || num <= 0) {
@@ -23,7 +23,7 @@ void check_pos_int(int& num) {
 	}
 }
 
-// Проверка: является ли полученное из файла число положительным.
+// РџСЂРѕРІРµСЂРєР°: СЏРІР»СЏРµС‚СЃСЏ Р»Рё РїРѕР»СѓС‡РµРЅРЅРѕРµ РёР· С„Р°Р№Р»Р° С‡РёСЃР»Рѕ РїРѕР»РѕР¶РёС‚РµР»СЊРЅС‹Рј.
 void fcheck_pos_int(int& value, ifstream& finput) {
 	string number;
 	finput >> number;
@@ -39,7 +39,7 @@ void fcheck_pos_int(int& value, ifstream& finput) {
 	}
 }
 
-// Проверка: является ли введённый маршрут корректным.
+// РџСЂРѕРІРµСЂРєР°: СЏРІР»СЏРµС‚СЃСЏ Р»Рё РІРІРµРґС‘РЅРЅС‹Р№ РјР°СЂС€СЂСѓС‚ РєРѕСЂСЂРµРєС‚РЅС‹Рј.
 void check_marsh(marsh& object) {
 	string start_point, end_point, route_number;
 	int value;
@@ -57,7 +57,7 @@ void check_marsh(marsh& object) {
 	object = marsh(start_point, end_point, value);
 }
 
-// Проверка: является ли полученный из файла маршрут корректным.
+// РџСЂРѕРІРµСЂРєР°: СЏРІР»СЏРµС‚СЃСЏ Р»Рё РїРѕР»СѓС‡РµРЅРЅС‹Р№ РёР· С„Р°Р№Р»Р° РјР°СЂС€СЂСѓС‚ РєРѕСЂСЂРµРєС‚РЅС‹Рј.
 void fcheck_marsh(marsh& object, ifstream& finput) {
 	string start_point, end_point, route_number;
 	int value;
