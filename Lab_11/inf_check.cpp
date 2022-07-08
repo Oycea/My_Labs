@@ -12,19 +12,48 @@ void check_file_name(string& file_name) {
 	finput.close();
 }
 
+// Проверка: правильно ли записано время.
+bool check_time(const string& data) {
+	for (int i = 2; i < 8; i += 3)
+		if (data[i] != ':') return false;
+	int temp = (data[0] - '0') * 10 + data[1] - '0';
+	if (temp >= 24 or temp < 0) return false;
+	temp = (data[3] - '0') * 10 + data[4] - '0';
+	if (temp >= 60 or temp < 0) return false;
+	temp = (data[6] - '0') * 10 + data[7] - '0';
+	if (temp >= 60 or temp < 0) return false;
+	return true;
+}
+
+// Проверка: правильно ли введено время.
+void check_input_time(string& time) {
+	cin >> time;
+	while (!check_time(time)) {
+		cout << "Try again: ";
+		cin >> time;
+	}
+}
+
+
 // Проверка: является ли введённое число положительным.
-void check_pos_int(int& num) {
-	cin >> num;
-	while (cin.fail() || num <= 0) {
-		cin.clear();
-		cin.ignore(32767, '\n');
-		cout << "ERROR! Is not a positive integer number!";
-		cin >> num;
+void check_positiv_int(int& value) {
+	string number;
+	while (true) {
+		cin >> number;
+		try {
+			value = stoi(number);
+		}
+		catch (...) {
+			cout << "Try again: ";
+			continue;
+		}
+		if (value <= 0) continue;
+		break;
 	}
 }
 
 // Проверка: является ли полученное из файла число положительным.
-void fcheck_pos_int(int& value, ifstream& finput) {
+void fcheck_positiv_int(int& value, ifstream& finput) {
 	string number;
 	finput >> number;
 	try {
@@ -41,10 +70,10 @@ void fcheck_pos_int(int& value, ifstream& finput) {
 
 // Проверка: является ли введённый маршрут корректным.
 void check_marsh(marsh& object) {
-	string start_point, end_point, route_number;
+	string route_number, start_point, end_point, departure_time;
 	int value;
 	while (true) {
-		cin >> start_point >> end_point >> route_number;
+		cin >> route_number >> start_point >> end_point >> departure_time;
 		try {
 			value = stoi(route_number);
 		}
@@ -52,22 +81,30 @@ void check_marsh(marsh& object) {
 			cout << "Try again: ";
 			continue;
 		}
+		if (!check_time(departure_time) || value <= 0) {
+			cout << "Try again: ";
+			continue;
+		}
 		break;
 	}
-	object = marsh(start_point, end_point, value);
+	object = marsh(value, start_point, end_point, departure_time);
 }
 
 // Проверка: является ли полученный из файла маршрут корректным.
 void fcheck_marsh(marsh& object, ifstream& finput) {
-	string start_point, end_point, route_number;
+	string route_number, start_point, end_point, departure_time;
 	int value;
-	cin >> start_point >> end_point >> route_number;
+	finput >> route_number >> start_point >> end_point >> departure_time;
 	try {
 		value = stoi(route_number);
 	}
 	catch (...) {
-		std::cout << "Error: not number\n";
+		cout << "Error: not number\n";
 		return;
 	}
-	object = marsh(start_point, end_point, value);
+	if (!check_time(departure_time)) {
+		cout << "Error: not time\n";
+		return;
+	}
+	object = marsh(value, start_point, end_point, departure_time);
 }
