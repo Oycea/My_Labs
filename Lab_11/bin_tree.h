@@ -17,8 +17,8 @@ private:
 	bin_tree_node<Type>* _parent;
 public:
 	//Конструктор
-	bin_tree_node(Type value = Type()) : _value(value), _height(1), 
-	_left(0), _right(0), _parent(0) {}
+	bin_tree_node(Type value = Type()) : _value(value), _height(1),
+		_left(0), _right(0), _parent(0) {}
 
 	//Деструктор
 	~bin_tree_node() {}
@@ -26,7 +26,7 @@ public:
 	//Фуекция, проверяющая является ли узел листом
 	bool is_leaf() { return _left == 0 && _right == 0; }
 
-	template <class Type1> 
+	template <class Type1>
 	friend class bin_tree;
 };
 
@@ -66,6 +66,14 @@ public:
 
 	void print_reverse() const { print_reverse(_root); }
 
+	// Указатель на функцию сравнения для печати и поиска определенных ключей.
+	using function_ptr = bool(*)(const Type&, const Type&);
+	// Метод печатает ключе дерева, удовлетворяющие условию check. Внути функции ключи дерева
+	// сравниваются с элементом object. Вовзращает число напечатаных объектов.
+	int print_ascending(function_ptr check, const Type& object) const {
+		return print_ascending(_root, check, object);
+	};
+
 
 private:
 	bin_tree_node<Type>* _root;
@@ -91,7 +99,7 @@ private:
 	}
 
 	//Правый поворот двоичного дерева вокруг pos
-	bin_tree_node<Type>* rotate_right(bin_tree_node<Type>* pos){
+	bin_tree_node<Type>* rotate_right(bin_tree_node<Type>* pos) {
 		bin_tree_node<Type>* tmp = pos->_left;
 		pos->_left = tmp->_right;
 		tmp->_right = pos;
@@ -101,7 +109,7 @@ private:
 	}
 
 	//Левый поворот двоичного дерева вокруг pos
-	bin_tree_node<Type>* rotate_left(bin_tree_node<Type>* pos){
+	bin_tree_node<Type>* rotate_left(bin_tree_node<Type>* pos) {
 		bin_tree_node<Type>* tmp = pos->_right;
 		pos->_right = tmp->_left;
 		tmp->_left = pos;
@@ -111,18 +119,18 @@ private:
 	}
 
 	//Балансировка pos
-	bin_tree_node<Type>* balance(bin_tree_node<Type>* pos){
+	bin_tree_node<Type>* balance(bin_tree_node<Type>* pos) {
 		fix_height(pos);
 		//Баланс положительный => высота правого поддерева больше левого => 
 		// => нужен поворот налево вокруг pos.
-		if (balance_factor(pos) == 2){
+		if (balance_factor(pos) == 2) {
 			if (balance_factor(pos->_right) < 0)
 				pos->_right = rotate_right(pos->_right);
 			return rotate_left(pos);
 		}
 		//Баланс отрицательный => высота левого поддерева больше правого => 
 		// => нужен поворот направо вокруг pos.
-		if (balance_factor(pos) == -2){
+		if (balance_factor(pos) == -2) {
 			if (balance_factor(pos->_left) > 0)
 				pos->_left = rotate_left(pos->_left);
 			return rotate_right(pos);
@@ -163,16 +171,12 @@ private:
 		return right + 1;
 	}
 
-	//Обёртка для поля высоты
-	int get_height(bin_tree_node<Type>* pos) {
-		if (!pos) return 0;
-		else return pos->height;
-	}
-
 	//Вычисление баланса заданного узла
-	int balance_factor(bin_tree_node<Type>* pos) const { 
+	int balance_factor(bin_tree_node<Type>* pos) const {
 		if (!pos) return 0;
-		return get_height(pos->_right) - get_height(pos->_left); 
+		int height_l = (pos->_left) ? pos->_left->_height : 0;
+		int height_r = (pos->_right) ? pos->_right->_height : 0;
+		return height_r - height_l;
 	}
 
 	//Подсчёт количества элементов
@@ -182,9 +186,18 @@ private:
 	}
 
 	//Восстановление значения высоты заданного узла
-	void fix_height(bin_tree_node<Type>* pos) { 
+	void fix_height(bin_tree_node<Type>* pos) {
 		if (!pos) return;
-		pos->_height = max(get_height(pos->_left), get_height(pos->_right)) + 1; 
+		int height_left, height_right;
+		if (pos->_left)
+			height_left = pos->_left->_height;
+		else height_left = 0;
+		if (pos->_right)
+			height_right = pos->_right->_height;
+		else height_right = 0;
+		if (height_left > height_right)
+			pos->_height = height_left + 1;
+		else pos->_height = height_right + 1;
 	}
 
 	//УДАЛЕНИЕ
@@ -235,7 +248,7 @@ private:
 		else if (val > pos->_value)
 			pos->_right = balance_remove(pos->_right, val);
 		else if (pos->_right && pos->_left) {
-			pos->_value = find_pos_min(pos->_right)->_key;
+			pos->_value = find_pos_min(pos->_right)->_value;
 			pos->_right = balance_remove(pos->_right, pos->_value);
 		}
 		else
@@ -297,6 +310,18 @@ private:
 		if (pos->_left) print_ascending(pos->_left);
 		cout << pos->_value << endl;
 		if (pos->_right) print_ascending(pos->_right);
+	}
+
+	int print_ascending(bin_tree_node<Type>* pos, function_ptr check, const Type& object) const {
+		if (!pos) return 0;
+		int ans = 0;
+		ans += print_ascending(pos->_left, check, object);
+		if (check(pos->_value, object)) {
+			cout << pos->_value << endl;
+			++ans;
+		}
+		ans += print_ascending(pos->_right, check, object);
+		return ans;
 	}
 
 	//Обратный обход
