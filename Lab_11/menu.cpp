@@ -8,71 +8,75 @@ void read_enter() {
 	getline(cin, buff);
 }
 
-// Функция считывает один элемент и добавляет его в древо.
-void input_one_item(bin_tree<marsh>& my_tree) {
+// Р¤СѓРЅРєС†РёСЏ СЃС‡РёС‚С‹РІР°РµС‚ РѕРґРёРЅ СЌР»РµРјРµРЅС‚ Рё РґРѕР±Р°РІР»СЏРµС‚ РµРіРѕ РІ РґСЂРµРІРѕ.
+void input_one_item(bin_tree<marsh>& marsh_tree) {
 	marsh item;
-	cout << "Enter: " << endl << "1) Starting point of the route" << endl
-		<< "2) End point of the route" << endl
-		<< "3) Route number" << endl << "Enter item: ";
+	cout << "Enter: " << endl << "1) Route number" << endl 
+		<< "2) Starting point of the route" << endl
+		<< "3) End point of the route" << endl
+		<< "4) Departure number" << endl << "Enter item: " << endl;
 	check_marsh(item);
 	cin.get();
-	my_tree.add_node(item);
+	marsh_tree.add_node(item);
 }
 
-// Функция ввода всего дерева клавиатуры.
-void input_tree(bin_tree<marsh>& my_tree) {
+// Р¤СѓРЅРєС†РёСЏ РІРІРѕРґР° РІСЃРµРіРѕ РґРµСЂРµРІР° РєР»Р°РІРёР°С‚СѓСЂС‹.
+void input_tree(bin_tree<marsh>& marsh_tree) {
 	int num;
 	cout << "Enter the number of routes: ";
-	check_pos_int(num);
+	check_positiv_int(num);
 	cin.get();
-	cout << "Enter: " << endl << "1) Starting point of the route" << endl
-		<< "2) End point of the route" << endl
-		<< "3) Route number" << endl;
+	cout << "Enter: " << endl << "1) Route number" << endl
+		<< "2) Starting point of the route" << endl
+		<< "3) End point of the route" << endl
+		<< "4) Departure number" << endl;
 	for (int i = 0; i < num; i++) {
 		marsh item;
-		cout << "Enter item: ";
+		cout << "Enter item: " << endl;
 		check_marsh(item);
 		cin.get();
-		my_tree.add_node(item);
+		marsh_tree.add_node(item);
 	}
 }
 
-// Функция ввода всего дерева из файла.
-void finput_tree(bin_tree<marsh>& my_tree) {
+// Р¤СѓРЅРєС†РёСЏ РІРІРѕРґР° РІСЃРµРіРѕ РґРµСЂРµРІР° РёР· С„Р°Р№Р»Р°.
+void finput_tree(bin_tree<marsh>& marsh_tree) {
 	string file_name;
 	cout << "Enter file name: ";
 	check_file_name(file_name);
-	cin.get();
+	std::cin.get();
 	ifstream finput(file_name);
 	int num;
-	fcheck_pos_int(num, finput);
+	fcheck_positiv_int(num, finput);
 	for (int i = 0; i < num; i++) {
 		marsh item;
 		fcheck_marsh(item, finput);
-		my_tree.add_node(item);
+		marsh_tree.add_node(item);
 	}
 	finput.close();
 }
 
-// Функция удаляет введенный элемент из дерева.
+// Р¤СѓРЅРєС†РёСЏ СѓРґР°Р»СЏРµС‚ РІРІРµРґРµРЅРЅС‹Р№ СЌР»РµРјРµРЅС‚ РёР· РґРµСЂРµРІР°.
 void delete_item(bin_tree<marsh>& my_tree) {
 	marsh item;
-	cout << "Enter: " << endl << "1) Starting point of the route" << endl
-		<< "2) End point of the route" << endl
-		<< "3) Route number" << endl << "Enter item: ";
+	cout << "Enter: " << endl << "1) Route number" << endl
+		<< "2) Starting point of the route" << endl
+		<< "3) End point of the route" << endl
+		<< "4) Departure number" << endl << "Enter item: " << endl;
 	check_marsh(item);
 	cin.get();
 	my_tree.balance_remove(item);
 }
 
-// Функция определяет, есть ли введенный элемент в дереве.
-void find_item(bin_tree<marsh>& my_tree) {
+// Р¤СѓРЅРєС†РёСЏ РѕРїСЂРµРґРµР»СЏРµС‚, РµСЃС‚СЊ Р»Рё РІРІРµРґРµРЅРЅС‹Р№ СЌР»РµРјРµРЅС‚ РІ РґРµСЂРµРІРµ.
+void find_item(bin_tree<marsh>& marsh_tree) {
 	marsh item;
-	cout << "Enter: " << endl << "1) Starting point of the route" << endl
-		<< "2) End point of the route" << endl
-		<< "3) Route number" << endl << "Enter item: ";
+	cout << "Enter: " << endl << "1) Route number" << endl
+		<< "2) Starting point of the route" << endl
+		<< "3) End point of the route" << endl
+		<< "4) Departure number" << endl << "Enter item: ";
 	check_marsh(item);
-	bin_tree_node<marsh>* pos= my_tree.find(item);
+	bin_tree_node<marsh>* pos = marsh_tree.find(item);
 	if (pos) {
 		cout << "Item found" << endl;
 		cin.get();
@@ -82,75 +86,75 @@ void find_item(bin_tree<marsh>& my_tree) {
 	cin.get();
 }
 
-// Функция редактирования запрошенного пользователем элемента.
-void edit_item(bin_tree<marsh>& my_tree) {
+// Р¤СѓРЅРєС†РёСЏ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ Р·Р°РїСЂРѕС€РµРЅРЅРѕРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј СЌР»РµРјРµРЅС‚Р°.
+void edit_item(bin_tree<marsh>& marsh_tree) {
 	marsh item;
-	cout << "Enter: " << endl << "1) Starting point of the route" << endl
-		<< "2) End point of the route" << endl
-		<< "3) Route number" << endl << "Enter item: ";
+	cout << "Enter: " << endl << "1) Route number" << endl
+		<< "2) Starting point of the route" << endl
+		<< "3) End point of the route" << endl
+		<< "4) Departure number" << endl << "Enter item: " << endl;
 	check_marsh(item);
-	bin_tree_node<marsh>* pos = my_tree.find(item);
+	bin_tree_node<marsh>* pos = marsh_tree.find(item);
 	if (!pos) {
 		cout << "Item not found" << endl;
 		cin.get();
 		return;
 	}
-	my_tree.balance_remove(item);
+	marsh_tree.balance_remove(item);
 	cout << "Enter new item: ";
 	check_marsh(item);
 	cin.get();
-	my_tree.add_node(item);
+	marsh_tree.add_node(item);
 }
 
-// Функция сравнивает пункты назначения двух поездов.
-//bool cmp_destination_name(const marsh& first, const marsh& second) {
-//	return first.destination_name() == second.destination_name();
-//}
+// Р¤СѓРЅРєС†РёСЏ СЃСЂР°РІРЅРёРІР°РµС‚ РїСѓРЅРєС‚С‹ РЅР°Р·РЅР°С‡РµРЅРёСЏ РґРІСѓС… РїРѕРµР·РґРѕРІ.
+bool cmp_end_point(const marsh& first, const marsh& second) {
+	return first.get_end_point() == second.get_end_point();
+}
 
-// Функция выводит все поезда с введенным пунктом назначения.
-//void print_with_same_name(bin_tree<marsh>& my_tree) {
-//	string name;
-//	cout << "Enter destination name: ";
-//	cin >> name;
-//	cin.get();
-//	int count_item = my_tree.print_lnr(cmp_destination_name, marsh(name, 0, "00:00:00"));
-//	if (!count_item) cout << "No items\n";
-//}
+// Р¤СѓРЅРєС†РёСЏ РІС‹РІРѕРґРёС‚ РІСЃРµ РїРѕРµР·РґР° СЃ РІРІРµРґРµРЅРЅС‹Рј РїСѓРЅРєС‚РѕРј РЅР°Р·РЅР°С‡РµРЅРёСЏ.
+void print_with_same_end_point(bin_tree<marsh>& my_tree) {
+	string end_point;
+	cout << "Enter end point: ";
+	cin >> end_point;
+	cin.get();
+	int count_item = my_tree.print_ascending(cmp_end_point, marsh(0, "", end_point, "00:00:00"));
+	if (!count_item) cout << "No items\n";
+}
 
-// Функция сравнивает время отправки поездов.
-//bool cmp_departure_time(const marsh& first, const marsh& second) {
-//	return first.departure_time() > second.departure_time();
-//}
+// Р¤СѓРЅРєС†РёСЏ СЃСЂР°РІРЅРёРІР°РµС‚ РІСЂРµРјСЏ РѕС‚РїСЂР°РІРєРё РїРѕРµР·РґРѕРІ.
+bool cmp_departure_time(const marsh& first, const marsh& second) {
+	return first.get_departure_time() > second.get_departure_time();
+}
 
-// Функция выводит все поезда, которые отправляются после введенного времени.
-//void print_after_set_time(bin_tree<marsh>& my_tree) {
-//	string departure_time;
-//	cout << "Enter departure time{hh:mm:ss}: ";
-//	input_time(departure_time);
-//	// Убираем мусор из потока.
-//	cin.get();
-//	int count_item = my_tree.print_lnr(cmp_departure_time, marsh("", 0, departure_time));
-//	if (!count_item) cout << "No items\n";
-//}
+// Р¤СѓРЅРєС†РёСЏ РІС‹РІРѕРґРёС‚ РІСЃРµ РїРѕРµР·РґР°, РєРѕС‚РѕСЂС‹Рµ РѕС‚РїСЂР°РІР»СЏСЋС‚СЃСЏ РїРѕСЃР»Рµ РІРІРµРґРµРЅРЅРѕРіРѕ РІСЂРµРјРµРЅРё.
+void print_after_set_time(bin_tree<marsh>& marsh_tree) {
+	string departure_time;
+	cout << "Enter departure time{hh:mm:ss}: ";
+	check_input_time(departure_time);
+	cin.get();
+	int count_item = marsh_tree.print_ascending(cmp_departure_time, marsh(0, "", "", departure_time));
+	if (!count_item) cout << "No items\n";
+}
 
-// Вывод пунктов первого меню и выбор пункта.
+// Р’С‹РІРѕРґ РїСѓРЅРєС‚РѕРІ РїРµСЂРІРѕРіРѕ РјРµРЅСЋ Рё РІС‹Р±РѕСЂ РїСѓРЅРєС‚Р°.
 int choise_build_menu() {
 	int choice;
-	system("clear");
+	system("cls");
 	cout << "Build Tree Menu\n"
 		<< "1 - Keyboard input\n"
 		<< "2 - File input\n"
 		<< "3 - Quit\n"
 		<< "Please choose: ";
-	check_pos_int(choice);
+	check_positiv_int(choice);
 	cin.get();
 	return choice;
 }
 
-// Вывод пунктов второго меню и выбор пункта.
+// Р’С‹РІРѕРґ РїСѓРЅРєС‚РѕРІ РІС‚РѕСЂРѕРіРѕ РјРµРЅСЋ Рё РІС‹Р±РѕСЂ РїСѓРЅРєС‚Р°.
 int choise_main_menu() {
 	int choice;
-	system("clear");
+	system("cls");
 	cout << "Main Menu\n"
 		<< "1 - Add item\n"
 		<< "2 - Delete item\n"
@@ -161,12 +165,12 @@ int choise_main_menu() {
 		<< "7 - Print after a set time\n"
 		<< "8 - Quit\n"
 		<< "Please choose: ";
-	check_pos_int(choice);
+	check_positiv_int(choice);
 	cin.get();
 	return choice;
 }
 
-// Цикл второго меню.
+// Р¦РёРєР» РІС‚РѕСЂРѕРіРѕ РјРµРЅСЋ.
 void main_menu(bin_tree<marsh>& my_tree) {
 	int choice;
 	while (true) {
@@ -194,7 +198,7 @@ void main_menu(bin_tree<marsh>& my_tree) {
 			read_enter();
 			break;
 		case 6:
-			print_with_same_name(my_tree);
+			print_with_same_end_point(my_tree);
 			cout << "Press enter...";
 			read_enter();
 			break;
@@ -204,7 +208,7 @@ void main_menu(bin_tree<marsh>& my_tree) {
 			read_enter();
 			break;
 		case 8:
-			system("clear");
+			system("cls");
 			return;
 		default:
 			cout << "No such item\nPress enter...";
@@ -214,7 +218,7 @@ void main_menu(bin_tree<marsh>& my_tree) {
 	}
 }
 
-// Цикл первого меню.
+// Р¦РёРєР» РїРµСЂРІРѕРіРѕ РјРµРЅСЋ.
 void build_menu(bin_tree<marsh>& my_tree) {
 	int choice;
 	while (true) {
@@ -229,7 +233,7 @@ void build_menu(bin_tree<marsh>& my_tree) {
 			read_enter();
 			break;
 		case 3:
-			system("clear");
+			system("cls");
 			return;
 		default:
 			cout << "No such item\nPress enter...";

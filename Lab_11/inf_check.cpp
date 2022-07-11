@@ -1,6 +1,6 @@
 #include"inf_check.h"
 
-// œÓ‚ÂÍ‡: ÍÓÂÍÚÌÓ ÎË ËÏˇ Ù‡ÈÎ‡.
+// –ü—Ä–æ–≤–µ—Ä–∫–∞: –∫–æ—Ä—Ä–µ–∫—Ç–Ω–æ –ª–∏ –∏–º—è —Ñ–∞–π–ª–∞.
 void check_file_name(string& file_name) {
 	cin >> file_name;
 	ifstream finput(file_name);
@@ -12,19 +12,48 @@ void check_file_name(string& file_name) {
 	finput.close();
 }
 
-// œÓ‚ÂÍ‡: ˇ‚ÎˇÂÚÒˇ ÎË ‚‚Â‰∏ÌÌÓÂ ˜ËÒÎÓ ÔÓÎÓÊËÚÂÎ¸Ì˚Ï.
-void check_pos_int(int& num) {
-	cin >> num;
-	while (cin.fail() || num <= 0) {
-		cin.clear();
-		cin.ignore(32767, '\n');
-		cout << "ERROR! Is not a positive integer number!";
-		cin >> num;
+// –ü—Ä–æ–≤–µ—Ä–∫–∞: –ø—Ä–∞–≤–∏–ª—å–Ω–æ –ª–∏ –∑–∞–ø–∏—Å–∞–Ω–æ –≤—Ä–µ–º—è.
+bool check_time(const string& data) {
+	for (int i = 2; i < 8; i += 3)
+		if (data[i] != ':') return false;
+	int temp = (data[0] - '0') * 10 + data[1] - '0';
+	if (temp >= 24 or temp < 0) return false;
+	temp = (data[3] - '0') * 10 + data[4] - '0';
+	if (temp >= 60 or temp < 0) return false;
+	temp = (data[6] - '0') * 10 + data[7] - '0';
+	if (temp >= 60 or temp < 0) return false;
+	return true;
+}
+
+// –ü—Ä–æ–≤–µ—Ä–∫–∞: –ø—Ä–∞–≤–∏–ª—å–Ω–æ –ª–∏ –≤–≤–µ–¥–µ–Ω–æ –≤—Ä–µ–º—è.
+void check_input_time(string& time) {
+	cin >> time;
+	while (!check_time(time)) {
+		cout << "Try again: ";
+		cin >> time;
 	}
 }
 
-// œÓ‚ÂÍ‡: ˇ‚ÎˇÂÚÒˇ ÎË ÔÓÎÛ˜ÂÌÌÓÂ ËÁ Ù‡ÈÎ‡ ˜ËÒÎÓ ÔÓÎÓÊËÚÂÎ¸Ì˚Ï.
-void fcheck_pos_int(int& value, ifstream& finput) {
+
+// –ü—Ä–æ–≤–µ—Ä–∫–∞: —è–≤–ª—è–µ—Ç—Å—è –ª–∏ –≤–≤–µ–¥—ë–Ω–Ω–æ–µ —á–∏—Å–ª–æ –ø–æ–ª–æ–∂–∏—Ç–µ–ª—å–Ω—ã–º.
+void check_positiv_int(int& value) {
+	string number;
+	while (true) {
+		cin >> number;
+		try {
+			value = stoi(number);
+		}
+		catch (...) {
+			cout << "Try again: ";
+			continue;
+		}
+		if (value <= 0) continue;
+		break;
+	}
+}
+
+// –ü—Ä–æ–≤–µ—Ä–∫–∞: —è–≤–ª—è–µ—Ç—Å—è –ª–∏ –ø–æ–ª—É—á–µ–Ω–Ω–æ–µ –∏–∑ —Ñ–∞–π–ª–∞ —á–∏—Å–ª–æ –ø–æ–ª–æ–∂–∏—Ç–µ–ª—å–Ω—ã–º.
+void fcheck_positiv_int(int& value, ifstream& finput) {
 	string number;
 	finput >> number;
 	try {
@@ -39,12 +68,12 @@ void fcheck_pos_int(int& value, ifstream& finput) {
 	}
 }
 
-// œÓ‚ÂÍ‡: ˇ‚ÎˇÂÚÒˇ ÎË ‚‚Â‰∏ÌÌ˚È Ï‡¯ÛÚ ÍÓÂÍÚÌ˚Ï.
+// –ü—Ä–æ–≤–µ—Ä–∫–∞: —è–≤–ª—è–µ—Ç—Å—è –ª–∏ –≤–≤–µ–¥—ë–Ω–Ω—ã–π –º–∞—Ä—à—Ä—É—Ç –∫–æ—Ä—Ä–µ–∫—Ç–Ω—ã–º.
 void check_marsh(marsh& object) {
-	string start_point, end_point, route_number;
+	string route_number, start_point, end_point, departure_time;
 	int value;
 	while (true) {
-		cin >> start_point >> end_point >> route_number;
+		cin >> route_number >> start_point >> end_point >> departure_time;
 		try {
 			value = stoi(route_number);
 		}
@@ -52,22 +81,30 @@ void check_marsh(marsh& object) {
 			cout << "Try again: ";
 			continue;
 		}
+		if (!check_time(departure_time) || value <= 0) {
+			cout << "Try again: ";
+			continue;
+		}
 		break;
 	}
-	object = marsh(start_point, end_point, value);
+	object = marsh(value, start_point, end_point, departure_time);
 }
 
-// œÓ‚ÂÍ‡: ˇ‚ÎˇÂÚÒˇ ÎË ÔÓÎÛ˜ÂÌÌ˚È ËÁ Ù‡ÈÎ‡ Ï‡¯ÛÚ ÍÓÂÍÚÌ˚Ï.
+// –ü—Ä–æ–≤–µ—Ä–∫–∞: —è–≤–ª—è–µ—Ç—Å—è –ª–∏ –ø–æ–ª—É—á–µ–Ω–Ω—ã–π –∏–∑ —Ñ–∞–π–ª–∞ –º–∞—Ä—à—Ä—É—Ç –∫–æ—Ä—Ä–µ–∫—Ç–Ω—ã–º.
 void fcheck_marsh(marsh& object, ifstream& finput) {
-	string start_point, end_point, route_number;
+	string route_number, start_point, end_point, departure_time;
 	int value;
-	cin >> start_point >> end_point >> route_number;
+	finput >> route_number >> start_point >> end_point >> departure_time;
 	try {
 		value = stoi(route_number);
 	}
 	catch (...) {
-		std::cout << "Error: not number\n";
+		cout << "Error: not number\n";
 		return;
 	}
-	object = marsh(start_point, end_point, value);
+	if (!check_time(departure_time)) {
+		cout << "Error: not time\n";
+		return;
+	}
+	object = marsh(value, start_point, end_point, departure_time);
 }

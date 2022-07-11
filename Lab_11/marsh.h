@@ -5,38 +5,42 @@
 #include<string>
 using namespace std;
 
-class marsh{
+class marsh {
 private:
-	// Íà÷àëüíûé è êîíå÷íûé ïóíêòû ìàğøğóòà.
-	string _start_point, _end_point;
-	// Íîìåğ ìàğøğóòà.
+	// ĞĞ¾Ğ¼ĞµÑ€ Ğ¼Ğ°Ñ€ÑˆÑ€ÑƒÑ‚Ğ°.
 	int _route_number;
+	// ĞĞ°Ñ‡Ğ°Ğ»ÑŒĞ½Ñ‹Ğ¹ Ğ¸ ĞºĞ¾Ğ½ĞµÑ‡Ğ½Ñ‹Ğ¹ Ğ¿ÑƒĞ½ĞºÑ‚Ñ‹ Ğ¼Ğ°Ñ€ÑˆÑ€ÑƒÑ‚Ğ°.
+	string _start_point, _end_point;
+	// Ğ’Ñ€ĞµĞ¼Ñ Ğ´Ğ²Ğ¸Ğ¶ĞµĞ½Ğ¸Ñ Ğ¿Ğ¾ Ğ¼Ğ°Ñ€ÑˆÑ€ÑƒÑ‚Ñƒ.
+	string _departure_time;
 
 public:
 
-	// ÊÎÍÑÒĞÓÊÒÎĞÛ.
-	marsh() : _start_point(""), _end_point(""), _route_number(0) {}
-	marsh(const string&, const string&, const int);
+	// ĞšĞĞĞ¡Ğ¢Ğ Ğ£ĞšĞ¢ĞĞ Ğ«.
+	marsh() : _route_number(0), _start_point(""), _end_point(""), _departure_time("00:00:00") {}
+	marsh(const int, const string&, const string&, const string&);
 	marsh(const marsh&);
 
-	// ÄÅÑÒĞÓÊÒÎĞ.
+	// Ğ”Ğ•Ğ¡Ğ¢Ğ Ğ£ĞšĞ¢ĞĞ .
 	~marsh() {}
 
-	// ÃÅÒÒÅĞÛ.
+	// Ğ“Ğ•Ğ¢Ğ¢Ğ•Ğ Ğ«.
+	int get_route_number() const { return _route_number; }
 	string get_start_point() const { return _start_point; }
 	string get_end_point() const { return _end_point; }
-	int get_route_number() const { return _route_number; }
+	string get_departure_time() const { return _departure_time; }
 
-	// ÏÅĞÅÎÏĞÅÄÅËÅÍÈÅ ÎÏÅĞÀÒÎĞÎÂ.
+	// ĞŸĞ•Ğ Ğ•ĞĞŸĞ Ğ•Ğ”Ğ•Ğ›Ğ•ĞĞ˜Ğ• ĞĞŸĞ•Ğ ĞĞ¢ĞĞ ĞĞ’.
 
 	friend ostream& operator<<(ostream&, const marsh&);
 
-	//Ñğàâíåíèå èä¸ò ïî íîìåğàì ìàğøğóòîâ.
+	marsh& operator=(const marsh&);
+
+	// Ğ¡Ñ€Ğ°Ğ²Ğ½ĞµĞ½Ğ¸Ğµ Ğ¸Ğ´Ñ‘Ñ‚ Ğ¿Ğ¾ Ğ½Ğ¾Ğ¼ĞµÑ€Ğ°Ğ¼ Ğ¼Ğ°Ñ€ÑˆÑ€ÑƒÑ‚Ğ¾Ğ²
+	// Ğ•ÑĞ»Ğ¸ Ğ¾Ğ½Ğ¸ Ñ€Ğ°Ğ²Ğ½Ñ‹ - Ñ‚Ğ¾ Ğ¿Ğ¾ Ğ²Ñ€ĞµĞ¼ĞµĞ½Ğ¸ Ğ´Ğ²Ğ¸Ğ¶ĞµĞ½Ğ¸Ñ Ğ¿Ğ¾ĞµĞ·Ğ´Ğ°.
 	int operator<(const marsh&) const;
 	int operator>(const marsh&) const;
 	int operator==(const marsh&) const;
-
-	marsh& operator=(const marsh&);
 
 };
 
