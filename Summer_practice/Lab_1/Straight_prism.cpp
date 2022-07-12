@@ -6,8 +6,8 @@ Straight_prism::Straight_prism() : Isosceles_triangle(), _height(0) {}
 Straight_prism::Straight_prism(double side1, double side2, double side3, double height) :
 	Isosceles_triangle(side1, side2, side3), _height(height) {}
 
-Straight_prism::Straight_prism(const Straight_prism& object):
-	Isosceles_triangle(object), _height(object._height){}
+Straight_prism::Straight_prism(const Straight_prism& object) :
+	Isosceles_triangle(object), _height(object._height) {}
 
 
 // Переопределение оператора вывода
@@ -25,19 +25,37 @@ istream& operator>>(istream& input, Straight_prism& object) {
 	cout << "Enter the paremetres of the isosceles triangle at the base:" << endl;
 	cout << "Enter base: " << endl;
 	input >> num;
+	while ((input.fail()) || (num <= 0)) {
+		std::cin.clear();
+		std::cin.ignore(32767, '\n');
+		cout << "Incorrect variable. Enter again" << endl;
+		input >> num;
+	}
 	object.set_side3(num);
 	cout << "Enter side: " << endl;
 	input >> num;
+	while ((input.fail()) || (num <= 0)) {
+		std::cin.clear();
+		std::cin.ignore(32767, '\n');
+		cout << "Incorrect variable. Enter again" << endl;
+		input >> num;
+	}
 	object.set_side1(num);
 	object.set_side2(num);
 	cout << "Enter prism height: " << endl;
 	input >> num;
+	while ((input.fail()) || (num <= 0)) {
+		std::cin.clear();
+		std::cin.ignore(32767, '\n');
+		cout << "Incorrect variable. Enter again" << endl;
+		input >> num;
+	}
 	object.set_height(num);
 	return input;
 }
 
 // Вычисление площади поверхности
-double Straight_prism::find_surface_area() const{
+double Straight_prism::find_surface_area() const {
 	return _height * find_perimeter() + 2 * find_square();
 }
 
@@ -58,17 +76,9 @@ double Straight_prism::find_max_diagonal() {
 void Straight_prism::print() {
 	double* all_angle = new double[3];
 	all_angle = find_all_angle();
-	cout << "Type: " << endl << type();
-	cout << "Pparemetres of the isosceles triangle at the base: " << endl;
-	cout << "Side 1 = " << _side1 << endl;
-	cout << "Side 2 = " << _side2 << endl;
-	cout << "Side 3 = " << _side3 << endl;
-	cout << "Square = " << find_square();
-	cout << "Perimeter = " << find_perimeter();
-	cout << "All angle: ";
-	for (int i = 0; i < 3; i++)
-		cout << all_angle[i] << " ";
-	cout << endl << "Prism height = " << _height << endl;
+	cout << "Type: " << endl << type() << endl;
+	cout << "Prism square = " << find_surface_area() << endl;
+	cout << "prism volume = " << find_volume() << endl;
 	delete[] all_angle;
 	all_angle = 0;
 }

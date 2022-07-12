@@ -63,7 +63,7 @@ void function_1(List<Figure*>& figure_list) {
 // Функция выводит информацию о фигурах из списка
 void function_2(List<Figure*>& figure_list) {
 	Node<Figure*>* curr = figure_list.front();
-	while(curr){
+	while (curr) {
 		curr->value()->print();
 		curr = curr->next();
 	}
@@ -78,7 +78,7 @@ void function_3(List<Figure*>& list, Isosceles_triangle& triangle, Straight_pris
 		auto& value = *(curr->value());
 		if (typeid(value) == typeid(triangle)) {
 			Isosceles_triangle* object = dynamic_cast<Isosceles_triangle*>(curr->value());
-			square = triangle.find_square();
+			square = object->find_square();
 			if (max_square < square) {
 				max_square = square;
 				triangle = *object;
@@ -86,7 +86,7 @@ void function_3(List<Figure*>& list, Isosceles_triangle& triangle, Straight_pris
 		}
 		if (typeid(value) == typeid(prism)) {
 			Straight_prism* object = dynamic_cast<Straight_prism*>(curr->value());
-			diagonal = prism.find_max_diagonal();
+			diagonal = object->find_max_diagonal();
 			if (max_diagonal < diagonal) {
 				max_diagonal = diagonal;
 				prism = *object;

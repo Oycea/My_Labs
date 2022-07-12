@@ -4,7 +4,7 @@
 #include<iostream>
 #include"Isosceles_triangle.h"
 
-class Straight_prism : public Isosceles_triangle{
+class Straight_prism : public Isosceles_triangle {
 private:
 	double _height;
 
